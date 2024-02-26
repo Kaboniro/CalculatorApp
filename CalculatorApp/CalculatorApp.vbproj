@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="CodeRinseRepeat.SymbolicsRenderer" Version="0.3.0" />
+    <PackageReference Include="Extreme.Numerics" Version="8.1.23" />
     <PackageReference Include="MathNet.Symbolics" Version="0.25.0" />
   </ItemGroup>
 
