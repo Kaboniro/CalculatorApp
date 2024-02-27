@@ -56,14 +56,15 @@ Partial Class Form1
         btn_cos = New Button()
         btn_sin = New Button()
         btn_tan = New Button()
+        btn_mod = New Button()
         SuspendLayout()
         ' 
         ' btn_sign_eq
         ' 
-        btn_sign_eq.Location = New Point(99, 279)
+        btn_sign_eq.Location = New Point(321, 279)
         btn_sign_eq.Margin = New Padding(3, 2, 3, 2)
         btn_sign_eq.Name = "btn_sign_eq"
-        btn_sign_eq.Size = New Size(49, 39)
+        btn_sign_eq.Size = New Size(104, 39)
         btn_sign_eq.TabIndex = 11
         btn_sign_eq.Text = "="
         btn_sign_eq.UseVisualStyleBackColor = True
@@ -245,10 +246,10 @@ Partial Class Form1
         ' 
         ' btn_clear
         ' 
-        btn_clear.Location = New Point(266, 59)
+        btn_clear.Location = New Point(263, 53)
         btn_clear.Margin = New Padding(3, 2, 3, 2)
         btn_clear.Name = "btn_clear"
-        btn_clear.Size = New Size(82, 22)
+        btn_clear.Size = New Size(74, 30)
         btn_clear.TabIndex = 20
         btn_clear.Text = "Clear"
         btn_clear.UseVisualStyleBackColor = True
@@ -342,10 +343,10 @@ Partial Class Form1
         ' 
         ' btn_history
         ' 
-        btn_history.Location = New Point(321, 279)
+        btn_history.Location = New Point(351, 53)
         btn_history.Margin = New Padding(3, 2, 3, 2)
         btn_history.Name = "btn_history"
-        btn_history.Size = New Size(104, 39)
+        btn_history.Size = New Size(74, 30)
         btn_history.TabIndex = 32
         btn_history.Text = "History"
         btn_history.UseVisualStyleBackColor = True
@@ -380,11 +381,22 @@ Partial Class Form1
         btn_tan.Text = "tan"
         btn_tan.UseVisualStyleBackColor = True
         ' 
+        ' btn_mod
+        ' 
+        btn_mod.Location = New Point(99, 279)
+        btn_mod.Margin = New Padding(3, 2, 3, 2)
+        btn_mod.Name = "btn_mod"
+        btn_mod.Size = New Size(49, 39)
+        btn_mod.TabIndex = 36
+        btn_mod.Text = "mod"
+        btn_mod.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(698, 338)
+        Controls.Add(btn_mod)
         Controls.Add(btn_tan)
         Controls.Add(btn_sin)
         Controls.Add(btn_cos)
@@ -461,5 +473,6 @@ Partial Class Form1
     Friend WithEvents btn_tan As Button
     Friend WithEvents lbl_base As Label
     Friend WithEvents txt_base As TextBox
+    Friend WithEvents btn_mod As Button
 
 End Class

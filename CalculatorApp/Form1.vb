@@ -10,10 +10,12 @@ Public Class Form1
         ' Verify the license during form load
         Extreme.License.Verify("37551-31834-20229-27429")
     End Sub
-    Private Sub btn_click(sender As Object, e As EventArgs) Handles btn_num_0.Click, btn_num_1.Click, btn_num_2.Click, btn_num_3.Click, btn_num_4.Click, btn_num_5.Click, btn_num_6.Click, btn_num_7.Click, btn_num_8.Click, btn_num_9.Click, btn_sum.Click, btn_difference.Click, btn_multiplication.Click, btn_division.Click, btn_log.Click, btn_exponent.Click, btn_sin.Click, btn_cos.Click, btn_tan.Click, btn_factorial.Click, btn_root.Click
+    Private Sub btn_click(sender As Object, e As EventArgs) Handles btn_num_0.Click, btn_num_1.Click, btn_num_2.Click, btn_num_3.Click, btn_num_4.Click, btn_num_5.Click, btn_num_6.Click, btn_num_7.Click, btn_num_8.Click, btn_num_9.Click, btn_sum.Click, btn_difference.Click, btn_multiplication.Click, btn_division.Click, btn_log.Click, btn_exponent.Click, btn_sin.Click, btn_cos.Click, btn_tan.Click, btn_factorial.Click, btn_root.Click, btn_mod.Click
         Dim button As Button = DirectCast(sender, Button)
         If button.Text = "log" Then
             input_box.Text &= "log({})"
+        ElseIf button.Text = "mod" Then
+            input_box.Text &= "%"
         Else
             input_box.Text &= button.Text
         End If
@@ -51,6 +53,9 @@ Public Class Form1
             ElseIf expression.Contains("root") Then
                 Dim result_root As Double = EvaluateRoot(expression)
                 Return result_root
+            ElseIf expression.Contains("%") Then
+                Dim result_modulus As Double = EvaluateMod(expression)
+                Return result_modulus
             Else
                 Dim result_exp As Object = New DataTable().Compute(expression, Nothing)
                 Return Convert.ToDouble(result_exp)
@@ -122,6 +127,21 @@ Public Class Form1
 
         ' Calculate the result
         Dim result As Double = Math.Pow(base, exponent)
+        Return result
+    End Function
+
+    Private Function EvaluateMod(expression As String) As Double
+        Dim parts6() As String = expression.Split("%"c)
+        If parts6.Length <> 2 Then
+            Throw New ArgumentException("Invalid exponent expression.")
+        End If
+
+        ' Parse the base and exponent
+        Dim dividend As Double = Double.Parse(parts6(0))
+        Dim divisor As Double = Double.Parse(parts6(1))
+
+        ' Calculate the result using modulo operation
+        Dim result As Double = dividend Mod divisor
         Return result
     End Function
 
