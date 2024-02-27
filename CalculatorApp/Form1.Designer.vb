@@ -47,11 +47,8 @@ Partial Class Form1
         btn_log = New Button()
         lbl_expression = New Label()
         exp_box = New TextBox()
-        lbl_ = New Label()
-        txt_times = New TextBox()
         btn_intergrate = New Button()
         btn_differentiate = New Button()
-        calc_result = New TextBox()
         btn_history = New Button()
         btn_cos = New Button()
         btn_sin = New Button()
@@ -287,7 +284,7 @@ Partial Class Form1
         ' lbl_expression
         ' 
         lbl_expression.AutoSize = True
-        lbl_expression.Location = New Point(484, 126)
+        lbl_expression.Location = New Point(547, 138)
         lbl_expression.Name = "lbl_expression"
         lbl_expression.Size = New Size(54, 15)
         lbl_expression.TabIndex = 25
@@ -295,30 +292,14 @@ Partial Class Form1
         ' 
         ' exp_box
         ' 
-        exp_box.Location = New Point(563, 126)
+        exp_box.Location = New Point(499, 182)
         exp_box.Name = "exp_box"
-        exp_box.Size = New Size(100, 23)
+        exp_box.Size = New Size(154, 23)
         exp_box.TabIndex = 26
-        ' 
-        ' lbl_
-        ' 
-        lbl_.AutoSize = True
-        lbl_.Location = New Point(484, 190)
-        lbl_.Name = "lbl_"
-        lbl_.Size = New Size(69, 15)
-        lbl_.TabIndex = 27
-        lbl_.Text = "No of times"
-        ' 
-        ' txt_times
-        ' 
-        txt_times.Location = New Point(601, 182)
-        txt_times.Name = "txt_times"
-        txt_times.Size = New Size(29, 23)
-        txt_times.TabIndex = 28
         ' 
         ' btn_intergrate
         ' 
-        btn_intergrate.Location = New Point(478, 279)
+        btn_intergrate.Location = New Point(478, 237)
         btn_intergrate.Name = "btn_intergrate"
         btn_intergrate.Size = New Size(75, 23)
         btn_intergrate.TabIndex = 29
@@ -327,19 +308,12 @@ Partial Class Form1
         ' 
         ' btn_differentiate
         ' 
-        btn_differentiate.Location = New Point(588, 279)
+        btn_differentiate.Location = New Point(588, 237)
         btn_differentiate.Name = "btn_differentiate"
         btn_differentiate.Size = New Size(75, 23)
         btn_differentiate.TabIndex = 30
         btn_differentiate.Text = "Derivative"
         btn_differentiate.UseVisualStyleBackColor = True
-        ' 
-        ' calc_result
-        ' 
-        calc_result.Location = New Point(479, 230)
-        calc_result.Name = "calc_result"
-        calc_result.Size = New Size(184, 23)
-        calc_result.TabIndex = 31
         ' 
         ' btn_history
         ' 
@@ -401,11 +375,8 @@ Partial Class Form1
         Controls.Add(btn_sin)
         Controls.Add(btn_cos)
         Controls.Add(btn_history)
-        Controls.Add(calc_result)
         Controls.Add(btn_differentiate)
         Controls.Add(btn_intergrate)
-        Controls.Add(txt_times)
-        Controls.Add(lbl_)
         Controls.Add(exp_box)
         Controls.Add(lbl_expression)
         Controls.Add(btn_log)
@@ -462,11 +433,8 @@ Partial Class Form1
     Friend WithEvents btn_log As Button
     Friend WithEvents lbl_expression As Label
     Friend WithEvents exp_box As TextBox
-    Friend WithEvents lbl_ As Label
-    Friend WithEvents txt_times As TextBox
     Friend WithEvents btn_intergrate As Button
     Friend WithEvents btn_differentiate As Button
-    Friend WithEvents calc_result As TextBox
     Friend WithEvents btn_history As Button
     Friend WithEvents btn_cos As Button
     Friend WithEvents btn_sin As Button

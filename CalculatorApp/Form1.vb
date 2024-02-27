@@ -182,10 +182,8 @@ Public Class Form1
         If parts5.Length <> 3 OrElse parts5(0).ToLower() <> "root" Then
             Throw New ArgumentException("Invalid root expression.")
         End If
-
         ' Parse the number inside parentheses
         Dim n As Double = Double.Parse(parts5(1))
-
         ' Calculate the square root (n = 2)
         Dim result As Double = Math.Sqrt(n)
         Return result
@@ -193,23 +191,27 @@ Public Class Form1
 
     Private Sub btn_intergrate_Click(sender As Object, e As EventArgs) Handles btn_intergrate.Click
         Dim expression As String = exp_box.Text
-        Dim integralResult As Double = IntegrateExpression(expression)
-        calc_result.Text = integralResult.ToString()
+        Dim integralResult As Double = CommunicationMaxima(expression)
     End Sub
 
-    Private Function IntegrateExpression(expression As String) As Double
+    Private Function CommunicationMaxima(expression As String) As Double
         Try
-            ' Construct expression tree from the expression
-            Dim tree As New ExpressionTree(expression)
+            Dim maximaProcess As New Process()
+            maximaProcess.StartInfo.FileName = "C:\maxima-5.47.0\bin\wxmaxima.exe"
+            maximaProcess.StartInfo.Arguments = "-q --very-quiet"
+            maximaProcess.StartInfo.RedirectStandardInput = True
+            maximaProcess.StartInfo.RedirectStandardOutput = True
+            maximaProcess.StartInfo.UseShellExecute = False
+            maximaProcess.StartInfo.CreateNoWindow = True
 
-            ' Integrate the expression using the Simpson integrator
-            Dim simpson As New SimpsonIntegrator()
-            simpson.RelativeTolerance = 0.00001
-            Dim result As Double = tree.IntegrateExpression(0, 5) ' Define integration limits as needed
+            maximaProcess.Start()
+            ' Send expression to Maxima'
+            maximaProcess.StandardInput.WriteLine(expression)
+            Dim result As String = maximaProcess.StandardOutput.ReadToEnd()
 
-            ' Return the result as a string
-            Return result
-
+            maximaProcess.WaitForExit()
+            maximaProcess.Close()
+            MessageBox.Show("Integration result: " & result)
         Catch ex As Exception
             ' Show error message
             MessageBox.Show("Error integrating expression: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -218,158 +220,5 @@ Public Class Form1
     End Function
 End Class
 
-Class ExpressionTree
-    Private root As Node
 
-    Public Sub New(expression As String)
-        Dim postfix As String = ConvertToPostfix(expression)
-        root = ConstructTree(postfix)
-    End Sub
 
-    Private Function ConvertToPostfix(infixExpression As String) As String
-        ' Dictionary to hold operator precedence
-        Dim precedence As New Dictionary(Of Char, Integer) From {
-            {"+", 1},
-            {"-", 1},
-            {"*", 2},
-            {"/", 2}
-        }
-
-        ' Stack to hold operators during conversion
-        Dim stack As New Stack(Of Char)
-        ' List to hold the postfix expression
-        Dim output As New List(Of String)
-
-        ' Tokenize the infix expression
-        Dim tokens() As String = Tokenize(infixExpression)
-
-        For Each token As String In tokens
-            ' If the token is an operand, add it to the output list
-            If IsOperand(token) Then
-                output.Add(token)
-            ElseIf token = "(" Then
-                ' If the token is a left parenthesis, push it onto the stack
-                stack.Push(token(0))
-            ElseIf token = ")" Then
-                ' If the token is a right parenthesis, pop operators from the stack
-                ' and add them to the output list until a left parenthesis is encountered
-                While stack.Count > 0 AndAlso stack.Peek() <> "("
-                    output.Add(stack.Pop().ToString())
-                End While
-                ' Discard the left parenthesis
-                stack.Pop()
-            ElseIf IsOperator(token) Then
-                ' If the token is an operator
-                While stack.Count > 0 AndAlso precedence(stack.Peek()) >= precedence(token(0))
-                    ' Pop operators from the stack and add them to the output list
-                    ' until an operator with lower precedence is encountered
-                    output.Add(stack.Pop().ToString())
-                End While
-                ' Push the token onto the stack
-                stack.Push(token(0))
-            End If
-        Next
-
-        ' Pop any remaining operators from the stack and add them to the output list
-        While stack.Count > 0
-            output.Add(stack.Pop().ToString())
-        End While
-
-        ' Join the tokens in the output list to form the postfix expression
-        Return String.Join(" ", output)
-    End Function
-
-    ' Helper function to tokenize the infix expression
-    Private Function Tokenize(infixExpression As String) As String()
-        ' Here you need to implement the logic to tokenize the infix expression
-        ' For example, you can split the expression by spaces and operators
-        Return infixExpression.Split(New Char() {" "c, "+"c, "-"c, "*"c, "/"c, "("c, ")"c}, StringSplitOptions.RemoveEmptyEntries)
-    End Function
-
-    ' Helper function to check if a token is an operand
-    Private Function IsOperand(token As String) As Boolean
-        ' Here you need to define the conditions for identifying operands
-        ' For example, you can check if the token is not an operator or parenthesis
-        Return Not (IsOperator(token) Or token = "(" Or token = ")")
-    End Function
-
-    ' Helper function to check if a token is an operator
-    Private Function IsOperator(token As String) As Boolean
-        ' Here you need to define the conditions for identifying operators
-        ' For example, you can check if the token is one of the basic arithmetic operators
-        Return token = "+" Or token = "-" Or token = "*" Or token = "/"
-    End Function
-
-    Private Function ConstructTree(postfixExpression As String) As Node
-        ' Stack to hold nodes during tree construction
-        Dim stack As New Stack(Of Node)
-
-        ' Iterate through each token in the postfix expression
-        For Each token As String In postfixExpression.Split(" "c)
-            ' If the token is an operand, create a node and push it onto the stack
-            If IsOperand(token) Then
-                Dim operandNode As New Node()
-                operandNode.value = token
-                stack.Push(operandNode)
-            Else
-                ' If the token is an operator, pop the top two nodes from the stack
-                Dim operatorNode As New Node()
-                operatorNode.value = token
-
-                Dim rightNode As Node = stack.Pop()
-                Dim leftNode As Node = stack.Pop()
-
-                ' Set the popped nodes as children of the operator node
-                operatorNode.right = rightNode
-                operatorNode.left = leftNode
-
-                ' Push the operator node back onto the stack
-                stack.Push(operatorNode)
-            End If
-        Next
-
-        ' The final node remaining on the stack is the root of the expression tree
-        Return stack.Pop()
-    End Function
-
-    Public Function IntegrateExpression(lowerLimit As Double, upperLimit As Double) As Double
-        Return Evaluate(root, upperLimit) - Evaluate(root, lowerLimit)
-    End Function
-
-    Private Function Evaluate(node As Node, variableValue As Double) As Double
-        If node Is Nothing Then
-            Return 0.0
-        End If
-
-        If node.value = "x" Then
-            Return variableValue
-        End If
-
-        If IsNumeric(node.value) Then
-            Return CDbl(node.value)
-        End If
-
-        Dim leftValue As Double = Evaluate(node.left, variableValue)
-        Dim rightValue As Double = Evaluate(node.right, variableValue)
-
-        Select Case node.value
-            Case "+"
-                Return leftValue + rightValue
-            Case "-"
-                Return leftValue - rightValue
-            Case "*"
-                Return leftValue * rightValue
-            Case "/"
-                Return leftValue / rightValue
-            Case Else
-                Throw New InvalidOperationException("Invalid node value")
-        End Select
-    End Function
-
-End Class
-
-Class Node
-    Public value As String
-    Public left As Node
-    Public right As Node
-End Class
