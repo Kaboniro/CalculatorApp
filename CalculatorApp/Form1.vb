@@ -222,7 +222,6 @@ Public Class Form1
         Catch ex As Exception
             ' Show error message
             MessageBox.Show("Error integrating expression: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return 0
         End Try
     End Function
     Private Function CommunicationMaximaInt(expression As String) As Double
