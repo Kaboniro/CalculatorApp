@@ -191,26 +191,33 @@ Public Class Form1
 
     Private Sub btn_intergrate_Click(sender As Object, e As EventArgs) Handles btn_intergrate.Click
         Dim expression As String = exp_box.Text
-        Dim integralResult As Double = CommunicationMaxima(expression)
+        Dim integralResult As Double = CommunicationMaximaInt(expression)
     End Sub
-
-    Private Function CommunicationMaxima(expression As String) As Double
+    Private Sub btn_differentiate_Click(sender As Object, e As EventArgs) Handles btn_differentiate.Click
+        Dim expression As String = exp_box.Text
+        Dim diffResult As Double = CommunicationMaximadiff(expression)
+    End Sub
+    Private Function CommunicationMaximadiff(expression As String) As Double
         Try
             Dim maximaProcess As New Process()
-            maximaProcess.StartInfo.FileName = "C:\maxima-5.47.0\bin\wxmaxima.exe"
-            maximaProcess.StartInfo.Arguments = "-q --very-quiet"
+            maximaProcess.StartInfo.FileName = "C:\maxima-5.47.0\bin\maxima.bat"
+            maximaProcess.StartInfo.Arguments = "--very-quiet"
             maximaProcess.StartInfo.RedirectStandardInput = True
             maximaProcess.StartInfo.RedirectStandardOutput = True
             maximaProcess.StartInfo.UseShellExecute = False
             maximaProcess.StartInfo.CreateNoWindow = True
 
             maximaProcess.Start()
-            ' Send expression to Maxima'
-            maximaProcess.StandardInput.WriteLine(expression)
+
+            ' Send expression to Maxima for integration'
+            maximaProcess.StandardInput.WriteLine("derivative(" & expression & ", x);") ' Assuming 'x' is the derivative variable
+            maximaProcess.StandardInput.WriteLine("quit();")
+
             Dim result As String = maximaProcess.StandardOutput.ReadToEnd()
 
             maximaProcess.WaitForExit()
             maximaProcess.Close()
+
             MessageBox.Show("Integration result: " & result)
         Catch ex As Exception
             ' Show error message
@@ -218,6 +225,35 @@ Public Class Form1
             Return 0
         End Try
     End Function
+    Private Function CommunicationMaximaInt(expression As String) As Double
+        Try
+            Dim maximaProcess As New Process()
+            maximaProcess.StartInfo.FileName = "C:\maxima-5.47.0\bin\maxima.bat"
+            maximaProcess.StartInfo.Arguments = "--very-quiet"
+            maximaProcess.StartInfo.RedirectStandardInput = True
+            maximaProcess.StartInfo.RedirectStandardOutput = True
+            maximaProcess.StartInfo.UseShellExecute = False
+            maximaProcess.StartInfo.CreateNoWindow = True
+
+            maximaProcess.Start()
+
+            ' Send expression to Maxima for integration'
+            maximaProcess.StandardInput.WriteLine("integrate(" & expression & ", x);") ' Assuming 'x' is the integration variable
+            maximaProcess.StandardInput.WriteLine("quit();")
+
+            Dim result As String = maximaProcess.StandardOutput.ReadToEnd()
+
+            maximaProcess.WaitForExit()
+            maximaProcess.Close()
+
+            MessageBox.Show("Integration result: " & result)
+        Catch ex As Exception
+            ' Show error message
+            MessageBox.Show("Error integrating expression: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 0
+        End Try
+    End Function
+
 End Class
 
 
