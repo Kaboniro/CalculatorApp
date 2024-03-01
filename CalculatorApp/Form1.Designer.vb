@@ -46,24 +46,25 @@ Partial Class Form1
         btn_exponent = New Button()
         btn_log = New Button()
         lbl_expression = New Label()
-        TextBox1 = New TextBox()
+        exp_box = New TextBox()
         lbl_ = New Label()
         txt_times = New TextBox()
         btn_intergrate = New Button()
         btn_differentiate = New Button()
-        TextBox2 = New TextBox()
+        calc_result = New TextBox()
         btn_history = New Button()
         btn_cos = New Button()
         btn_sin = New Button()
         btn_tan = New Button()
+        btn_mod = New Button()
         SuspendLayout()
         ' 
         ' btn_sign_eq
         ' 
-        btn_sign_eq.Location = New Point(99, 279)
+        btn_sign_eq.Location = New Point(321, 279)
         btn_sign_eq.Margin = New Padding(3, 2, 3, 2)
         btn_sign_eq.Name = "btn_sign_eq"
-        btn_sign_eq.Size = New Size(49, 39)
+        btn_sign_eq.Size = New Size(104, 39)
         btn_sign_eq.TabIndex = 11
         btn_sign_eq.Text = "="
         btn_sign_eq.UseVisualStyleBackColor = True
@@ -245,10 +246,10 @@ Partial Class Form1
         ' 
         ' btn_clear
         ' 
-        btn_clear.Location = New Point(266, 59)
+        btn_clear.Location = New Point(263, 53)
         btn_clear.Margin = New Padding(3, 2, 3, 2)
         btn_clear.Name = "btn_clear"
-        btn_clear.Size = New Size(82, 22)
+        btn_clear.Size = New Size(74, 30)
         btn_clear.TabIndex = 20
         btn_clear.Text = "Clear"
         btn_clear.UseVisualStyleBackColor = True
@@ -292,12 +293,12 @@ Partial Class Form1
         lbl_expression.TabIndex = 25
         lbl_expression.Text = "Function"
         ' 
-        ' TextBox1
+        ' exp_box
         ' 
-        TextBox1.Location = New Point(563, 126)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(100, 23)
-        TextBox1.TabIndex = 26
+        exp_box.Location = New Point(563, 126)
+        exp_box.Name = "exp_box"
+        exp_box.Size = New Size(100, 23)
+        exp_box.TabIndex = 26
         ' 
         ' lbl_
         ' 
@@ -333,19 +334,19 @@ Partial Class Form1
         btn_differentiate.Text = "Derivative"
         btn_differentiate.UseVisualStyleBackColor = True
         ' 
-        ' TextBox2
+        ' calc_result
         ' 
-        TextBox2.Location = New Point(479, 230)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(184, 23)
-        TextBox2.TabIndex = 31
+        calc_result.Location = New Point(479, 230)
+        calc_result.Name = "calc_result"
+        calc_result.Size = New Size(184, 23)
+        calc_result.TabIndex = 31
         ' 
         ' btn_history
         ' 
-        btn_history.Location = New Point(321, 279)
+        btn_history.Location = New Point(351, 53)
         btn_history.Margin = New Padding(3, 2, 3, 2)
         btn_history.Name = "btn_history"
-        btn_history.Size = New Size(104, 39)
+        btn_history.Size = New Size(74, 30)
         btn_history.TabIndex = 32
         btn_history.Text = "History"
         btn_history.UseVisualStyleBackColor = True
@@ -380,21 +381,32 @@ Partial Class Form1
         btn_tan.Text = "tan"
         btn_tan.UseVisualStyleBackColor = True
         ' 
+        ' btn_mod
+        ' 
+        btn_mod.Location = New Point(99, 279)
+        btn_mod.Margin = New Padding(3, 2, 3, 2)
+        btn_mod.Name = "btn_mod"
+        btn_mod.Size = New Size(49, 39)
+        btn_mod.TabIndex = 36
+        btn_mod.Text = "mod"
+        btn_mod.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(698, 338)
+        Controls.Add(btn_mod)
         Controls.Add(btn_tan)
         Controls.Add(btn_sin)
         Controls.Add(btn_cos)
         Controls.Add(btn_history)
-        Controls.Add(TextBox2)
+        Controls.Add(calc_result)
         Controls.Add(btn_differentiate)
         Controls.Add(btn_intergrate)
         Controls.Add(txt_times)
         Controls.Add(lbl_)
-        Controls.Add(TextBox1)
+        Controls.Add(exp_box)
         Controls.Add(lbl_expression)
         Controls.Add(btn_log)
         Controls.Add(btn_exponent)
@@ -449,17 +461,18 @@ Partial Class Form1
     Friend WithEvents btn_exponent As Button
     Friend WithEvents btn_log As Button
     Friend WithEvents lbl_expression As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents exp_box As TextBox
     Friend WithEvents lbl_ As Label
     Friend WithEvents txt_times As TextBox
     Friend WithEvents btn_intergrate As Button
     Friend WithEvents btn_differentiate As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents calc_result As TextBox
     Friend WithEvents btn_history As Button
     Friend WithEvents btn_cos As Button
     Friend WithEvents btn_sin As Button
     Friend WithEvents btn_tan As Button
     Friend WithEvents lbl_base As Label
     Friend WithEvents txt_base As TextBox
+    Friend WithEvents btn_mod As Button
 
 End Class
