@@ -24,9 +24,9 @@ Partial Class Form2
     Private Sub InitializeComponent()
         lbl_admin = New Label()
         Label1 = New Label()
-        TextBox1 = New TextBox()
+        txtusername = New TextBox()
         Label2 = New Label()
-        TextBox2 = New TextBox()
+        txtpassword = New TextBox()
         btn_admin = New Button()
         SuspendLayout()
         ' 
@@ -48,12 +48,12 @@ Partial Class Form2
         Label1.TabIndex = 1
         Label1.Text = "Username"
         ' 
-        ' TextBox1
+        ' txtusername
         ' 
-        TextBox1.Location = New Point(414, 113)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(100, 23)
-        TextBox1.TabIndex = 2
+        txtusername.Location = New Point(414, 113)
+        txtusername.Name = "txtusername"
+        txtusername.Size = New Size(100, 23)
+        txtusername.TabIndex = 2
         ' 
         ' Label2
         ' 
@@ -64,12 +64,12 @@ Partial Class Form2
         Label2.TabIndex = 3
         Label2.Text = "Password"
         ' 
-        ' TextBox2
+        ' txtpassword
         ' 
-        TextBox2.Location = New Point(414, 181)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(100, 23)
-        TextBox2.TabIndex = 4
+        txtpassword.Location = New Point(414, 181)
+        txtpassword.Name = "txtpassword"
+        txtpassword.Size = New Size(100, 23)
+        txtpassword.TabIndex = 4
         ' 
         ' btn_admin
         ' 
@@ -86,9 +86,9 @@ Partial Class Form2
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(btn_admin)
-        Controls.Add(TextBox2)
+        Controls.Add(txtpassword)
         Controls.Add(Label2)
-        Controls.Add(TextBox1)
+        Controls.Add(txtusername)
         Controls.Add(Label1)
         Controls.Add(lbl_admin)
         Name = "Form2"
@@ -99,8 +99,8 @@ Partial Class Form2
 
     Friend WithEvents lbl_admin As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtusername As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtpassword As TextBox
     Friend WithEvents btn_admin As Button
 End Class
