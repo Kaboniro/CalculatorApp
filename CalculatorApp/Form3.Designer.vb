@@ -31,6 +31,7 @@ Partial Class Form3
         btn_back = New Button()
         btn_submit = New Button()
         VScrollBar1 = New VScrollBar()
+        LogoutAd = New Button()
         SuspendLayout()
         ' 
         ' Label1
@@ -108,11 +109,21 @@ Partial Class Form3
         VScrollBar1.Size = New Size(21, 259)
         VScrollBar1.TabIndex = 8
         ' 
+        ' LogoutAd
+        ' 
+        LogoutAd.Location = New Point(700, 26)
+        LogoutAd.Name = "LogoutAd"
+        LogoutAd.Size = New Size(88, 25)
+        LogoutAd.TabIndex = 9
+        LogoutAd.Text = "Logout"
+        LogoutAd.UseVisualStyleBackColor = True
+        ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(LogoutAd)
         Controls.Add(VScrollBar1)
         Controls.Add(btn_submit)
         Controls.Add(btn_back)
@@ -137,4 +148,5 @@ Partial Class Form3
     Friend WithEvents btn_back As Button
     Friend WithEvents btn_submit As Button
     Friend WithEvents VScrollBar1 As VScrollBar
+    Friend WithEvents LogoutAd As Button
 End Class

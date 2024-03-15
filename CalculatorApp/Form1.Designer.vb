@@ -54,6 +54,7 @@ Partial Class Form1
         btn_sin = New Button()
         btn_tan = New Button()
         btn_mod = New Button()
+        Logoutcalc = New Button()
         SuspendLayout()
         ' 
         ' btn_sign_eq
@@ -365,11 +366,21 @@ Partial Class Form1
         btn_mod.Text = "mod"
         btn_mod.UseVisualStyleBackColor = True
         ' 
+        ' Logoutcalc
+        ' 
+        Logoutcalc.Location = New Point(611, 303)
+        Logoutcalc.Name = "Logoutcalc"
+        Logoutcalc.Size = New Size(75, 23)
+        Logoutcalc.TabIndex = 37
+        Logoutcalc.Text = "Logout"
+        Logoutcalc.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(698, 338)
+        Controls.Add(Logoutcalc)
         Controls.Add(btn_mod)
         Controls.Add(btn_tan)
         Controls.Add(btn_sin)
@@ -442,5 +453,6 @@ Partial Class Form1
     Friend WithEvents lbl_base As Label
     Friend WithEvents txt_base As TextBox
     Friend WithEvents btn_mod As Button
+    Friend WithEvents Logoutcalc As Button
 
 End Class

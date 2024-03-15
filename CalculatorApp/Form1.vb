@@ -253,6 +253,10 @@ Public Class Form1
         End Try
     End Function
 
+    Private Sub Logoutcalc_Click(sender As Object, e As EventArgs) Handles Logoutcalc.Click
+        Me.Close()
+        Form2.Show()
+    End Sub
 End Class
 
 
