@@ -26,7 +26,6 @@ Partial Class Form2
         txtusername = New TextBox()
         Label2 = New Label()
         txtpassword = New TextBox()
-        login_btn = New Button()
         cancel_btn = New Button()
         exit_btn = New Button()
         Panel1 = New Panel()
@@ -34,6 +33,8 @@ Partial Class Form2
         MenuStrip1 = New MenuStrip()
         Calculator = New RadioButton()
         Admin_panel = New RadioButton()
+        login_btn = New Button()
+        Register_btn = New Button()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -70,16 +71,6 @@ Partial Class Form2
         txtpassword.Name = "txtpassword"
         txtpassword.Size = New Size(100, 23)
         txtpassword.TabIndex = 4
-        ' 
-        ' login_btn
-        ' 
-        login_btn.Cursor = Cursors.Hand
-        login_btn.Location = New Point(512, 251)
-        login_btn.Name = "login_btn"
-        login_btn.Size = New Size(95, 45)
-        login_btn.TabIndex = 5
-        login_btn.Text = "Login"
-        login_btn.UseVisualStyleBackColor = True
         ' 
         ' cancel_btn
         ' 
@@ -149,11 +140,31 @@ Partial Class Form2
         Admin_panel.Text = "Admin Panel"
         Admin_panel.UseVisualStyleBackColor = True
         ' 
+        ' login_btn
+        ' 
+        login_btn.Cursor = Cursors.Hand
+        login_btn.Location = New Point(512, 251)
+        login_btn.Name = "login_btn"
+        login_btn.Size = New Size(95, 45)
+        login_btn.TabIndex = 5
+        login_btn.Text = "Login"
+        login_btn.UseVisualStyleBackColor = True
+        ' 
+        ' Register_btn
+        ' 
+        Register_btn.Location = New Point(686, 393)
+        Register_btn.Name = "Register_btn"
+        Register_btn.Size = New Size(75, 23)
+        Register_btn.TabIndex = 12
+        Register_btn.Text = "Register"
+        Register_btn.UseVisualStyleBackColor = True
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(Register_btn)
         Controls.Add(Admin_panel)
         Controls.Add(Calculator)
         Controls.Add(Panel1)
@@ -166,6 +177,7 @@ Partial Class Form2
         Controls.Add(Label1)
         Controls.Add(MenuStrip1)
         Name = "Form2"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "LOGIN WINDOW"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
@@ -176,7 +188,6 @@ Partial Class Form2
     Friend WithEvents txtusername As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtpassword As TextBox
-    Friend WithEvents login_btn As Button
     Friend WithEvents cancel_btn As Button
     Friend WithEvents exit_btn As Button
     Friend WithEvents Panel1 As Panel
@@ -184,4 +195,6 @@ Partial Class Form2
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents Calculator As RadioButton
     Friend WithEvents Admin_panel As RadioButton
+    Friend WithEvents login_btn As Button
+    Friend WithEvents Register_btn As Button
 End Class

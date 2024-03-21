@@ -415,6 +415,7 @@ Partial Class Form1
         Controls.Add(btn_num_1)
         Margin = New Padding(3, 2, 3, 2)
         Name = "Form1"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
         ResumeLayout(False)
         PerformLayout()

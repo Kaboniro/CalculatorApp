@@ -134,6 +134,7 @@ Partial Class Form3
         Controls.Add(lbl_admin)
         Controls.Add(Label1)
         Name = "Form3"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Form3"
         ResumeLayout(False)
         PerformLayout()
