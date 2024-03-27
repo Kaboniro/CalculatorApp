@@ -6,7 +6,7 @@ Public Class Form4
         Pass1 = txtpassword.Text
         Pass2 = txtconfirm.Text
 
-        Dim connStr As String = "Data Source=HISUL-2;Initial Catalog=Calc;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"
+        Dim connStr As String = "Data Source=HISUL-2;Initial Catalog=Calc;Integrated Security=True;"
         Dim query As String = "INSERT INTO [dbo].[Users] ([Username], [Passwords], [Email], [Phone_no]) VALUES (@Username, @Passwords, @Email, @Phone_no); SELECT SCOPE_IDENTITY();"
 
         If Pass1 = Pass2 Then
@@ -74,7 +74,7 @@ Public Class Form4
 
     Private Sub txtpassword_Enter(sender As Object, e As EventArgs) Handles txtpassword.Enter
         Dim pass As String = txtpassword.Text
-        If pass.Trim().ToLower() = "username" Or pass.Trim() = "" Then
+        If pass.Trim().ToLower() = "password" Or pass.Trim() = "" Then
             txtpassword.Text = ""
             txtpassword.ForeColor = Color.Black
             txtpassword.UseSystemPasswordChar = True
@@ -83,10 +83,60 @@ Public Class Form4
 
     Private Sub txtpassword_Leave(sender As Object, e As EventArgs) Handles txtpassword.Leave
         Dim pass As String = txtpassword.Text
-        If pass.Trim().ToLower() = "username" Or pass.Trim() = "" Then
-            txtpassword.Text = "pass"
-            txtpassword.ForeColor = Color.Black
+        If pass.Trim().ToLower() = "password" Or pass.Trim() = "" Then
+            txtpassword.Text = ""
+            txtpassword.ForeColor = Color.DarkGray
             txtpassword.UseSystemPasswordChar = False
+        End If
+    End Sub
+
+    Private Sub txtconfirm_Enter(sender As Object, e As EventArgs) Handles txtconfirm.Enter
+        Dim cpass As String = txtconfirm.Text
+        If cpass.Trim().ToLower() = "cpassword" Or cpass.Trim() = "" Then
+            txtconfirm.Text = ""
+            txtconfirm.ForeColor = Color.Black
+            txtconfirm.UseSystemPasswordChar = True
+        End If
+    End Sub
+
+    Private Sub txtconfirm_Leave(sender As Object, e As EventArgs) Handles txtconfirm.Leave
+        Dim cpass As String = txtconfirm.Text
+        If cpass.Trim().ToLower() = "cpassword" Or cpass.Trim() = "" Then
+            txtconfirm.Text = ""
+            txtconfirm.ForeColor = Color.DarkGray
+            txtconfirm.UseSystemPasswordChar = False
+        End If
+    End Sub
+
+    Private Sub txtemail_Enter(sender As Object, e As EventArgs) Handles txtemail.Enter
+        Dim mail As String = txtemail.Text
+        If mail.Trim().ToLower() = "email" Or mail.Trim() = "" Then
+            txtemail.Text = ""
+            txtemail.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtemail_Leave(sender As Object, e As EventArgs) Handles txtemail.Leave
+        Dim mail As String = txtemail.Text
+        If mail.Trim().ToLower() = "email" Or mail.Trim() = "" Then
+            txtemail.Text = "Email"
+            txtemail.ForeColor = Color.DarkGray
+        End If
+    End Sub
+
+    Private Sub txtphone_Enter(sender As Object, e As EventArgs) Handles txtphone.Enter
+        Dim phone As String = txtphone.Text
+        If phone.Trim().ToLower() = "Phone" Or phone.Trim() = "" Then
+            txtphone.Text = ""
+            txtphone.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtphone_Leave(sender As Object, e As EventArgs) Handles txtphone.Leave
+        Dim phone As String = txtphone.Text
+        If phone.Trim().ToLower() = "Phone" Or phone.Trim() = "" Then
+            txtphone.Text = "Phone number"
+            txtphone.ForeColor = Color.DarkGray
         End If
     End Sub
 End Class

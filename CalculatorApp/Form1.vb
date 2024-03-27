@@ -4,12 +4,20 @@ Imports Extreme.Mathematics.Calculus
 Imports Extreme.Mathematics
 Imports System.Linq.Expressions
 Imports System.Collections.Generic
+Imports System.Data.SqlClient
 
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Verify the license during form load
         Extreme.License.Verify("37551-31834-20229-27429")
+        Dim loginForm As Form2 = DirectCast(Application.OpenForms("LoginForm"), Form2)
+        If loginForm IsNot Nothing Then
+            ' Access the LoggedInUserID property
+            LoggedInUserID = loginForm.LoggedInUserID
+            MessageBox.Show("Logged-in User ID: " & LoggedInUserID)
+        End If
     End Sub
+
     Private Sub btn_click(sender As Object, e As EventArgs) Handles btn_num_0.Click, btn_num_1.Click, btn_num_2.Click, btn_num_3.Click, btn_num_4.Click, btn_num_5.Click, btn_num_6.Click, btn_num_7.Click, btn_num_8.Click, btn_num_9.Click, btn_sum.Click, btn_difference.Click, btn_multiplication.Click, btn_division.Click, btn_log.Click, btn_exponent.Click, btn_sin.Click, btn_cos.Click, btn_tan.Click, btn_factorial.Click, btn_root.Click, btn_mod.Click
         Dim button As Button = DirectCast(sender, Button)
         If button.Text = "log" Then
@@ -26,11 +34,90 @@ Public Class Form1
         result_box.Clear()
     End Sub
 
+    ' Define a property to store the logged-in user's ID
+    Public Shared Property LoggedInUserID As Integer
+
     Private Sub btn_sign_eq_Click(sender As Object, e As EventArgs) Handles btn_sign_eq.Click
         Dim expression As String = input_box.Text
         Dim result As Double = EvaluateExpression(expression)
+
+        ' Make sure LoggedInUserID is properly set before calling SaveToHistory
+        If LoggedInUserID <> 0 Then
+            ' Save the history with the logged-in user's ID
+            SaveToHistory(LoggedInUserID, expression, result)
+        Else
+            MessageBox.Show("User not logged in.")
+        End If
+
         result_box.Text = result.ToString()
     End Sub
+
+    Private Sub SaveToHistory(UserID As Integer, expression As String, result As Double)
+        Try
+            ' Define the connection string for the MSSQL database
+            Dim connectionString As String = "Data Source=HISUL-2;Initial Catalog=Calc;Integrated Security=True;"
+
+            ' Define the SQL query to insert history entry
+            Dim query As String = "INSERT INTO History (UserID, Expression, Result, Timestamp) VALUES (@LoggedInUserID, @Expression, @Result, GETDATE())"
+
+            ' Establish connection to the database
+            Using connection As New SqlConnection(connectionString)
+                ' Open the connection
+                connection.Open()
+
+                ' Create a command object
+                Using command As New SqlCommand(query, connection)
+                    ' Add parameters to the command
+                    command.Parameters.AddWithValue("@LoggedInUserID", UserID)
+                    command.Parameters.AddWithValue("@Expression", expression)
+                    command.Parameters.AddWithValue("@Result", result)
+
+                    ' Execute the SQL command
+                    command.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error saving to history: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btn_history_Click(sender As Object, e As EventArgs) Handles btn_history.Click
+        ' Define the connection string for the MSSQL database
+        Dim connectionString As String = "Data Source=HISUL-2;Initial Catalog=Calc;Integrated Security=True;"
+
+        ' Define the SQL query to fetch history entries for the logged-in user
+        Dim query As String = "SELECT Expression, Result, Timestamp FROM History WHERE UserID = @UserID"
+
+        Try
+            ' Establish connection to the database
+            Using connection As New SqlConnection(connectionString)
+                ' Open the connection
+                connection.Open()
+
+                ' Create a command object
+                Using command As New SqlCommand(query, connection)
+                    ' Add parameter to the command
+                    command.Parameters.AddWithValue("@UserID", LoggedInUserID)
+
+                    ' Create a data adapter to fill data from the command
+                    Using adapter As New SqlDataAdapter(command)
+                        ' Create a DataTable to hold the fetched history entries
+                        Dim historyTable As New DataTable()
+
+                        ' Fill the DataTable with data from the database
+                        adapter.Fill(historyTable)
+
+                        ' Display the history entries (for example, in a new form)
+                        Dim historyForm As New HistoryForm(historyTable)
+                        historyForm.ShowDialog()
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error fetching history: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 
     Private Function EvaluateExpression(expression As String) As Double
         Try
@@ -257,6 +344,7 @@ Public Class Form1
         Me.Close()
         Form2.Show()
     End Sub
+
 End Class
 
 
