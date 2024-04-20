@@ -6,6 +6,7 @@ Imports System.Linq.Expressions
 Imports System.Collections.Generic
 Imports System.Data.SqlClient
 
+
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Verify the license during form load
@@ -86,7 +87,7 @@ Public Class Form1
         Dim connectionString As String = "Data Source=HISUL-2;Initial Catalog=Calc;Integrated Security=True;"
 
         ' Define the SQL query to fetch history entries for the logged-in user
-        Dim query As String = "SELECT Expression, Result, Timestamp FROM History WHERE UserID = @UserID"
+        Dim query As String = "SELECT ID, UserID, Expression, Result, Timestamp FROM History WHERE UserID = @UserID"
 
         Try
             ' Establish connection to the database

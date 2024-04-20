@@ -34,7 +34,6 @@ Partial Class Form2
         Calculator = New RadioButton()
         Admin_panel = New RadioButton()
         login_btn = New Button()
-        Register_btn = New Button()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -150,21 +149,11 @@ Partial Class Form2
         login_btn.Text = "Login"
         login_btn.UseVisualStyleBackColor = True
         ' 
-        ' Register_btn
-        ' 
-        Register_btn.Location = New Point(686, 393)
-        Register_btn.Name = "Register_btn"
-        Register_btn.Size = New Size(75, 23)
-        Register_btn.TabIndex = 12
-        Register_btn.Text = "Register"
-        Register_btn.UseVisualStyleBackColor = True
-        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
-        Controls.Add(Register_btn)
         Controls.Add(Admin_panel)
         Controls.Add(Calculator)
         Controls.Add(Panel1)
@@ -196,5 +185,4 @@ Partial Class Form2
     Friend WithEvents Calculator As RadioButton
     Friend WithEvents Admin_panel As RadioButton
     Friend WithEvents login_btn As Button
-    Friend WithEvents Register_btn As Button
 End Class

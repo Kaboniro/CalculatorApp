@@ -78,11 +78,6 @@ Public Class Form2
         Me.Close()
     End Sub
 
-    Private Sub Register_btn_Click(sender As Object, e As EventArgs) Handles Register_btn.Click
-        Me.Show()
-        Form4.Show()
-    End Sub
-
     Private Sub txtpassword_Enter(sender As Object, e As EventArgs) Handles txtpassword.Enter
         Dim pas As String = txtpassword.Text
         If pas.Trim().ToLower() = "password" Or pas.Trim() = "" Then
@@ -100,7 +95,6 @@ Public Class Form2
             txtpassword.UseSystemPasswordChar = False
         End If
     End Sub
-
 
 End Class
 

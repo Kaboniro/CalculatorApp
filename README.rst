@@ -14,6 +14,7 @@ Calculator - Form1.vb
 Registration form - Form4.vb
 Admin Panel - Form3.vb
 HistoryForm.vb
+UpdateForm - Form5.vb
 =====
 
 Db - MSSQL
@@ -41,3 +42,8 @@ CREATE TABLE History (
 ======
 
 In the forms, replace the connection string with yours.
+This is a Calculator, I won't bother to explain how it works.
+===Performs all CRUD Operations===
+***== Application done as a School Project==*** 
+«Нет давления, нет бриллиантов!», Хисул Мелло... 
+========================================================================***===========================================================================

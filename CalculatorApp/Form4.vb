@@ -21,6 +21,8 @@ Public Class Form4
                     conn.Open()
                     Dim newUserID As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     MessageBox.Show("You have registered successfully. Your User ID is: " & newUserID, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Me.Close()
+                    Form3.Show()
                 End Using
             End Using
         Else

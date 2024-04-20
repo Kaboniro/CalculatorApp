@@ -23,15 +23,13 @@ Partial Class Form3
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Label1 = New Label()
-        lbl_admin = New Label()
-        txt_admin_name = New TextBox()
-        lbl_admin2 = New Label()
-        txt_admin_lbl = New TextBox()
-        lst_code = New ListBox()
-        btn_back = New Button()
-        btn_submit = New Button()
-        VScrollBar1 = New VScrollBar()
+        btn_deactivate = New Button()
+        btn_update = New Button()
         LogoutAd = New Button()
+        UsersDataGridView = New DataGridView()
+        Register_btn = New Button()
+        Refresh_btn = New Button()
+        CType(UsersDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
@@ -43,71 +41,23 @@ Partial Class Form3
         Label1.TabIndex = 0
         Label1.Text = "ADMIN PANEL"
         ' 
-        ' lbl_admin
+        ' btn_deactivate
         ' 
-        lbl_admin.AutoSize = True
-        lbl_admin.Location = New Point(40, 82)
-        lbl_admin.Name = "lbl_admin"
-        lbl_admin.Size = New Size(92, 15)
-        lbl_admin.TabIndex = 1
-        lbl_admin.Text = "Name of Button"
+        btn_deactivate.Location = New Point(700, 191)
+        btn_deactivate.Name = "btn_deactivate"
+        btn_deactivate.Size = New Size(75, 23)
+        btn_deactivate.TabIndex = 6
+        btn_deactivate.Text = "Deactivate"
+        btn_deactivate.UseVisualStyleBackColor = True
         ' 
-        ' txt_admin_name
+        ' btn_update
         ' 
-        txt_admin_name.Location = New Point(153, 79)
-        txt_admin_name.Name = "txt_admin_name"
-        txt_admin_name.Size = New Size(100, 23)
-        txt_admin_name.TabIndex = 2
-        ' 
-        ' lbl_admin2
-        ' 
-        lbl_admin2.AutoSize = True
-        lbl_admin2.Location = New Point(309, 82)
-        lbl_admin2.Name = "lbl_admin2"
-        lbl_admin2.Size = New Size(88, 15)
-        lbl_admin2.TabIndex = 3
-        lbl_admin2.Text = "Label of Button"
-        ' 
-        ' txt_admin_lbl
-        ' 
-        txt_admin_lbl.Location = New Point(440, 79)
-        txt_admin_lbl.Name = "txt_admin_lbl"
-        txt_admin_lbl.Size = New Size(100, 23)
-        txt_admin_lbl.TabIndex = 4
-        ' 
-        ' lst_code
-        ' 
-        lst_code.FormattingEnabled = True
-        lst_code.ItemHeight = 15
-        lst_code.Location = New Point(40, 131)
-        lst_code.Name = "lst_code"
-        lst_code.Size = New Size(535, 259)
-        lst_code.TabIndex = 5
-        ' 
-        ' btn_back
-        ' 
-        btn_back.Location = New Point(663, 302)
-        btn_back.Name = "btn_back"
-        btn_back.Size = New Size(75, 23)
-        btn_back.TabIndex = 6
-        btn_back.Text = "To app"
-        btn_back.UseVisualStyleBackColor = True
-        ' 
-        ' btn_submit
-        ' 
-        btn_submit.Location = New Point(663, 212)
-        btn_submit.Name = "btn_submit"
-        btn_submit.Size = New Size(75, 23)
-        btn_submit.TabIndex = 7
-        btn_submit.Text = "Submit"
-        btn_submit.UseVisualStyleBackColor = True
-        ' 
-        ' VScrollBar1
-        ' 
-        VScrollBar1.Location = New Point(569, 131)
-        VScrollBar1.Name = "VScrollBar1"
-        VScrollBar1.Size = New Size(21, 259)
-        VScrollBar1.TabIndex = 8
+        btn_update.Location = New Point(700, 130)
+        btn_update.Name = "btn_update"
+        btn_update.Size = New Size(75, 23)
+        btn_update.TabIndex = 7
+        btn_update.Text = "Update"
+        btn_update.UseVisualStyleBackColor = True
         ' 
         ' LogoutAd
         ' 
@@ -118,36 +68,57 @@ Partial Class Form3
         LogoutAd.Text = "Logout"
         LogoutAd.UseVisualStyleBackColor = True
         ' 
+        ' UsersDataGridView
+        ' 
+        UsersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        UsersDataGridView.Location = New Point(97, 75)
+        UsersDataGridView.Name = "UsersDataGridView"
+        UsersDataGridView.Size = New Size(538, 312)
+        UsersDataGridView.TabIndex = 10
+        ' 
+        ' Register_btn
+        ' 
+        Register_btn.Location = New Point(700, 75)
+        Register_btn.Name = "Register_btn"
+        Register_btn.Size = New Size(75, 23)
+        Register_btn.TabIndex = 13
+        Register_btn.Text = "Register"
+        Register_btn.UseVisualStyleBackColor = True
+        ' 
+        ' Refresh_btn
+        ' 
+        Refresh_btn.Location = New Point(560, 393)
+        Refresh_btn.Name = "Refresh_btn"
+        Refresh_btn.Size = New Size(75, 23)
+        Refresh_btn.TabIndex = 14
+        Refresh_btn.Text = "Refresh"
+        Refresh_btn.UseVisualStyleBackColor = True
+        ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(Refresh_btn)
+        Controls.Add(Register_btn)
+        Controls.Add(UsersDataGridView)
         Controls.Add(LogoutAd)
-        Controls.Add(VScrollBar1)
-        Controls.Add(btn_submit)
-        Controls.Add(btn_back)
-        Controls.Add(lst_code)
-        Controls.Add(txt_admin_lbl)
-        Controls.Add(lbl_admin2)
-        Controls.Add(txt_admin_name)
-        Controls.Add(lbl_admin)
+        Controls.Add(btn_update)
+        Controls.Add(btn_deactivate)
         Controls.Add(Label1)
         Name = "Form3"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Form3"
+        Text = "Admin Panel"
+        CType(UsersDataGridView, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents lbl_admin As Label
-    Friend WithEvents txt_admin_name As TextBox
-    Friend WithEvents lbl_admin2 As Label
-    Friend WithEvents txt_admin_lbl As TextBox
-    Friend WithEvents lst_code As ListBox
-    Friend WithEvents btn_back As Button
-    Friend WithEvents btn_submit As Button
-    Friend WithEvents VScrollBar1 As VScrollBar
+    Friend WithEvents btn_deactivate As Button
+    Friend WithEvents btn_update As Button
     Friend WithEvents LogoutAd As Button
+    Friend WithEvents UsersDataGridView As DataGridView
+    Friend WithEvents Register_btn As Button
+    Friend WithEvents Refresh_btn As Button
 End Class

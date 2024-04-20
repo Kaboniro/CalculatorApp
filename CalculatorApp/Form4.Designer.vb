@@ -37,6 +37,7 @@ Partial Class Form4
         Label5 = New Label()
         txtconfirm = New TextBox()
         Label6 = New Label()
+        SqlCommandBuilder1 = New Microsoft.Data.SqlClient.SqlCommandBuilder()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -216,4 +217,5 @@ Partial Class Form4
     Friend WithEvents Label5 As Label
     Friend WithEvents txtconfirm As TextBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents SqlCommandBuilder1 As Microsoft.Data.SqlClient.SqlCommandBuilder
 End Class
